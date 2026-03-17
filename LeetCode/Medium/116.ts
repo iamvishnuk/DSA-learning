@@ -7,7 +7,7 @@
  * Binary Tree
  */
 
-class _Node {
+export class _Node {
   val: number;
   left: _Node | null;
   right: _Node | null;
