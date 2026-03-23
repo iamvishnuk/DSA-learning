@@ -1,9 +1,10 @@
-// 53. Maximum product Subarray
-/**
- * @param {number[]} nums
- * @return {number}
+// 152. Maximum Product Subarray
+/*
+ * Array
+ * Dynamic Programming
  */
-var maxProduct = function (nums) {
+
+function maxProduct(nums: number[]): number {
   let maxProduct = nums[0];
   let minProduct = nums[0];
   let result = nums[0];
@@ -12,12 +13,9 @@ var maxProduct = function (nums) {
     let temp = maxProduct;
     maxProduct = Math.max(nums[i], nums[i] * maxProduct, nums[i] * minProduct);
     minProduct = Math.min(nums[i], nums[i] * temp, nums[i] * minProduct);
+
     result = Math.max(result, maxProduct);
   }
 
   return result;
-};
-
-const nums = [-3, -1, -1];
-
-console.log(maxProduct(nums)); // Output: 3
+}
