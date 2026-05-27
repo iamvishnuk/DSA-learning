@@ -1,0 +1,34 @@
+// 3121. Count the Number of Special Characters II
+/*
+ * Hash Table
+ * String
+ */
+
+function numberOfSpecialChars(word: string): number {
+  const lastLow = new Array(26).fill(-1);
+  const firstUp = new Array(26).fill(-1);
+
+  for (let i = 0; i < word.length; i++) {
+    const c = word[i];
+
+    if (c >= 'a' && c <= 'z') {
+      lastLow[c.charCodeAt(0) - 97] = i;
+    } else {
+      const index = c.charCodeAt(0) - 65;
+
+      if (firstUp[index] === -1) {
+        firstUp[index] = i;
+      }
+    }
+  }
+
+  let count: number = 0;
+
+  for (let i = 0; i < 26; i++) {
+    if (lastLow[i] !== -1 && firstUp[i] !== -1 && lastLow[i] < firstUp[i]) {
+      count++;
+    }
+  }
+
+  return count;
+}
