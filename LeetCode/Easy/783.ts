@@ -1,23 +1,24 @@
 // 783. Minimum Distance Between BST Nodes
 import { TreeNode } from '../../types';
 
-const inOrder = (curr: TreeNode | null, num: number[]) => {
-  if (curr === null) return;
-
-  inOrder(curr.left, num);
-  num.push(curr.val);
-  inOrder(curr.right, num);
-};
-
 export function minDiffInBST(root: TreeNode | null): number {
-  const num: number[] = [];
-  let minDiff: number = Number.MAX_VALUE;
+  let minDiff: number = Infinity;
+  let prev: number | null = null;
 
-  inOrder(root, num);
+  function inOrder(node: TreeNode | null): void {
+    if (!node) return;
 
-  for (let i = 1; i < num.length; i++) {
-    minDiff = Math.min(minDiff, num[i] - num[i - 1]);
+    inOrder(node.left);
+
+    if (prev !== null) {
+      minDiff = Math.min(minDiff, node.val - prev);
+    }
+    prev = node.val;
+
+    inOrder(node.right);
   }
+
+  inOrder(root);
 
   return minDiff;
 }
