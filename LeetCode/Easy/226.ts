@@ -1,4 +1,11 @@
 // 226. Invert Binary Tree
+/*
+ * Tree
+ * Depth-First Search
+ * Breadth-First Search
+ * Binary Tree
+ */
+
 import { TreeNode } from '../../types';
 
 export const invertTree = (root: TreeNode | null): TreeNode | null => {
