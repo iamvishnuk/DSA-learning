@@ -1,4 +1,10 @@
 // 199. Binary Tree Right Side View
+/*
+ * Tree
+ * Depth-First Search
+ * Breadth-First Serach
+ * Binary Tree
+ */
 
 import { TreeNode } from '../../types';
 
@@ -7,24 +13,25 @@ export const rightSideView = (root: TreeNode | null): number[] => {
 
   const arr: number[] = [];
   const queue = [root];
+  let head: number = 0;
 
-  while (queue.length) {
-    const temp = [];
-    let levelLength = queue.length;
+  while (head < queue.length) {
+    let temp: number = 0;
+    let levelLength = queue.length - head;
 
     while (levelLength) {
-      const node = queue.shift();
+      const node = queue[head++];
 
       if (node?.left) queue.push(node.left);
       if (node?.right) queue.push(node.right);
 
       if (node) {
-        temp.push(node.val);
+        temp = node.val;
       }
       levelLength--;
     }
 
-    arr.push(temp[temp.length - 1]);
+    arr.push(temp);
   }
 
   return arr;
